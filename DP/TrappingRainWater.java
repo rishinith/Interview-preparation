@@ -75,7 +75,8 @@ class Program {
 
 
 
-
+//Space optimimized solution O(1)
+//Just keep the two pointers on left and right and we know that we leftmax or rightmax whichever is smaller will limit our volume for the respective left/right index
 import java.util.*;
 
 class Program {

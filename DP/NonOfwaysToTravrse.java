@@ -100,4 +100,13 @@ class Program {
  * 
  * total ways=(r+d)!/(r!*d!)
  * 
+ * For eg:
+ * Suppose r=3 d=2
+ * 
+ * one possible way can be rrrdd
+ * 
+ * total no of permutations;5!
+ * 
+ * but some permutations can be duplicate so to handle that 5!/(2!*3!)
+ * 
  */

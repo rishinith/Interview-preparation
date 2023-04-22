@@ -25,7 +25,7 @@ class Program {
 
     Arrays.sort(denoms);
 
-    //This is not the correct way to implement
+    // This is not the correct way to implement
     // for(int amount=1;amount<=n;amount++){
     //   for(int d=0;d<denoms.length;d++){
     //     if(denoms[d]<=amount)

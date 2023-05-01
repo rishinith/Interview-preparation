@@ -79,7 +79,6 @@ class Program {
 
   //return 2D array which store the palindrome of all substrings (i,j)
   //T: n*n S:n*n
-   //return 2D array which store the palindrome of all substrings (i,j)
   static boolean[][] palindrome2DArray(String str){
     int n=str.length();
 

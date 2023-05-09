@@ -1,3 +1,14 @@
+/**
+ *   Krushkal's algo
+        1. First sort all the edges by their weight
+        2. Keep picking up the edges and do the union of nodes
+        3. If nodes are already in the same union, ignore the edge, it will create cycle
+        4. Repeat above steps till N-1 edges are picked up
+
+            Time complexity: ElogE (Getting N-1 edges)+ Ealpha(V) (Union and find operations)
+            Space complexity: E(Queue)+N(union find ds)
+ */
+
 class UnionFind {
     public int[] group;
     public int[] rank;

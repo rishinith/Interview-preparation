@@ -25,7 +25,8 @@ class Program {
 
     Arrays.sort(denoms);
 
-    // This is not the correct way to implement
+    // This is not the correct way to implement because we want to include each coin in only way, 
+    // For eg: For amount 6: 1,5 and 5,1 are same. But in below loop, it will calculates as two ways
     // for(int amount=1;amount<=n;amount++){
     //   for(int d=0;d<denoms.length;d++){
     //     if(denoms[d]<=amount)

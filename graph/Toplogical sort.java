@@ -12,6 +12,7 @@ Return an empty list or an error message.
 7) Return the sorted list: Otherwise, return the sorted list.
 */
 
+//Modified BFS (Kahn's algo)
 public List<Integer> topologicalSort(Map<Integer, List<Integer>> graph, int[] indegrees) {
     List<Integer> sorted = new ArrayList<>();
     Queue<Integer> queue = new LinkedList<>();
@@ -42,4 +43,50 @@ public List<Integer> topologicalSort(Map<Integer, List<Integer>> graph, int[] in
     }
 
     return sorted;
+}
+
+
+//Using DFS, DFS actaull itertate elements in toplogical way only
+
+import java.util.*;
+
+public class TopologicalSortDFS {
+
+    // Main function to perform topological sort
+    public static List<Integer> topologicalSort(Map<Integer, List<Integer>> graph) {
+        List<Integer> sortedList = new ArrayList<>();
+        Set<Integer> visited = new HashSet<>();
+        Set<Integer> recursionStack = new HashSet<>();
+        for (int vertex : graph.keySet()) {
+            if (!visited.contains(vertex)) {
+                if (dfs(vertex, visited, recursionStack, sortedList, graph)) {
+                    //no topological sort
+                    return new ArrayList<>();
+                }
+            }
+        }
+        Collections.reverse(sortedList);
+        return sortedList;
+    }
+
+    // If return true, it menas cycle is there topological sort cant be done
+    public static boolean dfs(int vertex, Set<Integer> visited, Set<Integer> recursionStack, List<Integer> sortedList, Map<Integer, List<Integer>> graph) {
+        visited.add(vertex);
+        recursionStack.add(vertex);
+        if (graph.containsKey(vertex)) {
+            for (int neighbor : graph.get(vertex)) {
+                if (!visited.contains(neighbor)) {
+                    if (dfs(neighbor, visited, recursionStack, sortedList, graph)) {
+                        return true;
+                    }
+                } else if (recursionStack.contains(neighbor)) {
+                    return true;
+                }
+            }
+        }
+        recursionStack.remove(vertex);
+        sortedList.add(vertex);
+        return false;
+    }
+
 }

@@ -49,6 +49,7 @@ true
 //Hint: Ultimately we have to dtecet cycles where edge products is greater than 1
 // We can use Bellman ford or Floyd Warshall Algo
 // Since graph is well connected Bellman ford can also work, we can start with any node.
+//Note: Bellman ford and Floyd works only on directed graph, if graph is undirected, add both the edge i.e a to b and b to a for all the edge
 
 import java.util.*;
 

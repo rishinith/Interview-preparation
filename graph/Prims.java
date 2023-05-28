@@ -3,21 +3,7 @@
 // Return the minimum cost to make all points connected. All points are connected if there is exactly one simple path between any two points.
 
 class Solution {
-    public int minCostConnectPoints(int[][] points) {
-
-
-
-        /**
-        Krushkal's algo
-        1. First sort all the edges by their weight
-        2. Keep picking up the edges and do the union of nodes
-        3. If nodes are already in the same union, ignore the edge, it will create cycle
-        4. Repeat above steps till N-1 edges are picked up
-
-            Time complexity: ElogE (Getting N-1 edges)+ Ealpha(V) (Union and find operations)
-            Space complexity: E(Queue)+N(union find ds)
-         */
-        
+    public int minCostConnectPoints(int[][] points) {       
 
         /**
         Prim's algo
@@ -59,6 +45,7 @@ class Solution {
              for(int i=0;i<points.length;i++){
                   //adding neighbours if not visited
                  if(!visited[i]){
+                    //calculating edge weight i.e manhatton distance in this question
                     int dist=Math.abs(points[edge[0]][0]-points[i][0])+Math.abs(points[edge[0]][1]-points[i][1]);
                     pq.add(new int[]{i,dist});
                  }

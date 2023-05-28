@@ -5,7 +5,7 @@
         3. If nodes are already in the same union, ignore the edge, it will create cycle
         4. Repeat above steps till N-1 edges are picked up
 
-            Time complexity: ElogE (Getting N-1 edges)+ Ealpha(V) (Union and find operations)
+            Time complexity: ElogE (sorting)+ Ealpha(V) (Union and find operations)
             Space complexity: E(Queue)+N(union find ds)
  */
 

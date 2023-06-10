@@ -9,6 +9,7 @@ Return all critical connections in the network in any order.
 
 //T: V+E (single dfs) [because all the nodes are connected is mentioned in the question]
 //S: V+E
+//Tarzan's algo
 class Solution {
     public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
         // Initialize the result list to store critical edges

@@ -4,7 +4,8 @@
 It prioritizes the steps that are the most promising, making the best and informed decision on the next steps.
 A* uses a function f(n) = g(n) + h(n) to evaluate each potential step.
 g(n) is the cost to reach a specific step n.
-h(n) is a heuristic estimation of the cost to reach the destination from the step n. In grid it can be mahnatton distnace i.e abs(r1-r2) + abs(c1-c2)
+h(n) is a heuristic estimation of the cost to reach the destination from the step n. In grid it can be mahnatton distnace 
+i.e abs(r1-r2) + abs(c1-c2)
 f(n) is the estimated total cost to reach the destination if one takes the step n.
 The heuristic function h(n) should be admissible, meaning it never overestimates the cost.
 A* algorithm guarantees to find the shortest path if the heuristic function is admissible.

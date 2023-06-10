@@ -121,6 +121,7 @@ Please note that while there may exist a better upper bound for the time complex
                 //set ith and jth bit, include i th and j th item
                 mask|=1<<i;
                 mask|=1<<j;
+                
                 int temp=operation*gcd(num1, num2) + recursiveUsingBitmask(nums, memo, operation+1, mask);
                 result=Math.max(result, temp);
 

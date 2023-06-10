@@ -5,7 +5,8 @@ You are given a list of strings words from the alien language's dictionary, wher
 sorted lexicographically
  by the rules of this new language.
 
-Return a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules. If there is no solution, return "". If there are multiple solutions, return any of them.
+Return a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules. If there is no solution, return "".
+If there are multiple solutions, return any of them.
 
  
 
@@ -23,7 +24,6 @@ Input: words = ["z","x","z"]
 Output: ""
 Explanation: The order is invalid, so return "".
  */
-
 class Solution {
     public String alienOrder(String[] words) {
         
@@ -46,13 +46,13 @@ class Solution {
             int s1=0;
             int s2=0;
             //run the loop while equal charcaters are there
-            while(s1<word1.length() && s1<word2.length() && word1.charAt(s1)==word2.charAt(s2)){
+            while(s1<word1.length() && s2<word2.length() && word1.charAt(s1)==word2.charAt(s2)){
                 s1++;
                 s2++;
             }
 
-            //word1 is prefix of word2
-            if(s1<word1.length() && s2>=word2.length()){
+            //word2 is prefix of word1
+            if(s2==word2.length() && s1<word1.length()){
                 return "";
             }
 

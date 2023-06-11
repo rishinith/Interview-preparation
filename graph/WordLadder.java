@@ -100,7 +100,7 @@ class Solution {
 
             //Store string that are being visited on current level. 
             //This will be removed after all the elements on this level is visited
-            //We cant mark visted immediately because there can be multiplse sequence will the same lement on this level
+            //We cant mark visted immediately because there can be multiplse sequence with the same element on this level
             //for eg: abc->abd->add  and  abc->adc->add and both has to be recorded in answer
             Set<String> vistedOnCurrentLevel=new HashSet<>();
 
@@ -199,7 +199,7 @@ class Solution {
     }
 
 
-    //return the map od each string and its level in the all the final sequence from start to end
+    //return the map of each string and its level in the all the final sequence from start to end
     public Map<String,Integer> bfs(String start, String end, List<String> wordList) {
 
         Map<String,Integer> levelMap=new HashMap<>(0);

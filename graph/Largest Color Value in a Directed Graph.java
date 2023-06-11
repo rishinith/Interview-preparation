@@ -9,6 +9,15 @@ A valid path in the graph is a sequence of nodes x1 -> x2 -> x3 -> ... -> xk suc
 The color value of the path is the number of nodes that are colored the most frequently occurring color along that path.
 
 Return the largest color value of any valid path in the given graph, or -1 if the graph contains a cycle.
+
+Input: colors = "abaca", edges = [[0,1],[0,2],[2,3],[3,4]]
+Output: 3
+Explanation: The path 0 -> 2 -> 3 -> 4 contains 3 nodes that are colored "a" (red in the above image).
+
+
+Input: colors = "a", edges = [[0,0]]
+Output: -1
+Explanation: There is a cycle from 0 to 0.
  */
 
 //Topological sort  T:V+E S:V+E
@@ -83,6 +92,7 @@ class Solution {
                 if (dfs(neighbor, colors, adj, count, visit, inStack) == Integer.MAX_VALUE) {
                     return Integer.MAX_VALUE;
                 }
+                //set the maximum color counts till this point
                 for (int i = 0; i < 26; i++) {
                     count[node][i] = Math.max(count[node][i], count[neighbor][i]);
                 }

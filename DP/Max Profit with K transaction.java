@@ -156,3 +156,82 @@ class Program {
     return lastProfit[prices.length-1];
   }
 }
+
+
+
+
+
+
+//Solved after Dp series of TakeYouForward
+class Solution {
+    public int maxProfit(int k, int[] prices) {
+        
+
+        // Integer[][] dp=new Integer[prices.length][2*k];
+        // return maxProfit(0, prices, 0, k, dp);
+
+        return maxProfitTabulation(k, prices);
+    }
+
+
+    int maxProfitTabulation(int k, int[] prices){
+
+        int[] prev=new int[2*k+1];
+        int n=prices.length;
+
+        //idx: n-1->0  transaction->2k-1->0
+
+
+        for(int idx=n-1;idx>=0;idx--){
+            int[] current=new int[2*k+1];
+            for(int tx=2*k-1;tx>=0;tx--){
+                
+                if(tx%2==0){
+
+                    current[tx]=Math.max(prev[tx], -prices[idx]+prev[tx+1]);
+
+                }else{
+
+                    current[tx]=Math.max(prev[tx], prices[idx]+prev[tx+1]); 
+                }
+
+            }
+
+            prev=current;
+        }
+
+        return prev[0];
+    }
+
+
+
+    /**
+    Transactions=2*k
+    sell-buy
+
+    if k=2
+    transactions=0, 1,2,3
+    even=buy
+    odd- sell
+    This will make solution 2D otherwsie dp will be 3D
+     */
+    int maxProfit(int idx, int[] prices, int transaction, int k,  Integer[][] dp){
+        if(idx==prices.length || transaction==2*k){
+            return 0;
+        }
+
+        if(dp[idx][transaction]!=null){
+            return dp[idx][transaction];
+        }
+
+        //buy
+        if(transaction%2==0){
+
+            return dp[idx][transaction]=Math.max(maxProfit(idx+1, prices, transaction, k, dp), -prices[idx]+maxProfit(idx+1, prices, transaction+1, k, dp));
+
+        }else{
+
+             return dp[idx][transaction]=Math.max(maxProfit(idx+1, prices, transaction, k, dp), prices[idx]+maxProfit(idx+1, prices, transaction+1, k, dp));
+        }
+    }
+}

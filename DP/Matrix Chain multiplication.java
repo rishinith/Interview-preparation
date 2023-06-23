@@ -31,10 +31,15 @@ Also we need to find the cost of multiplication of these 2 resultant matrixes (f
  */
 
 //T: N^3
+import java.util.* ;
+import java.io.*; 
+
 public class Solution {
 	public static int matrixMultiplication(int[] arr , int N) {
-		Integer[][] dp=new Integer[N][N];
-		return matrixMultiplication(arr, 1, N-1, dp);
+		// Integer[][] dp=new Integer[N][N];
+		// return matrixMultiplication(arr, 1, N-1, dp);
+
+		return matrixMultiplicationTabulation(arr);
 	}
 
 	static int matrixMultiplication(int[] arr, int i, int j, Integer[][] dp){
@@ -55,6 +60,28 @@ public class Solution {
 		}
 
 		return dp[i][j]=minSteps;
+
+	}
+
+	static int matrixMultiplicationTabulation(int[] arr){
+		int n=arr.length;
+		int[][] dp=new int[n][n];
+
+		for(int i=n-1;i>=1;i--){
+			for(int j=i+1;j<=n-1;j++){
+				int minSteps=1_000_000_000;
+
+				for(int k=i;k<=j-1;k++){
+					int steps=arr[i-1]*arr[k]*arr[j]
+						+ dp[i][k]+ dp[k+1][j];
+					minSteps=Math.min(minSteps, steps);
+				}
+
+				dp[i][j]=minSteps;
+			}
+		}
+
+		return dp[1][n-1];
 
 	}
 	

@@ -102,3 +102,105 @@ class Program {
 
     return palindromes;
   }
+
+
+
+
+
+//Another way that I solved in leetcode
+class Solution {
+    public int minCut(String s) {
+        boolean[][] palindromeDP=getPalindrmeDP(s);
+
+        // Integer[] dp=new Integer[s.length()];
+        // return minCut(palindromeDP, 0, s.length(), dp);
+
+        return tabulation(palindromeDP, s);
+        
+    }
+
+
+    int tabulation(boolean[][] palindromeDP, String s){
+
+        int[] dp=new int[s.length()+1];
+
+        dp[s.length()]=0;
+
+        for(int i=s.length()-1;i>=0;i--){
+
+            if(palindromeDP[i][s.length()-1]){
+                dp[i]=0;
+                continue;
+            }
+
+            int minCut=Integer.MAX_VALUE;
+            for(int k=i;k<s.length();k++){
+                if(palindromeDP[i][k]){
+                    int cut=1+ dp[k+1];
+                    minCut=Math.min(cut,minCut);
+                }
+            }
+            dp[i]=minCut;
+        }
+        return dp[0];
+    }
+
+    int minCut(boolean[][] palindromeDP, int i, int n, Integer[] dp){
+        if(i==n){
+            return 0;
+        }
+
+        if(dp[i]!=null){
+            return dp[i];
+        }
+
+        if(palindromeDP[i][n-1]){
+            return 0;
+        }
+
+        int minCut=Integer.MAX_VALUE;
+        for(int k=i;k<n;k++){
+            if(palindromeDP[i][k]){
+                int cut=1+ minCut(palindromeDP, k+1,n, dp);
+                minCut=Math.min(cut,minCut);
+            }
+        }
+
+        return dp[i]=minCut;
+
+    }
+
+
+    boolean[][] getPalindrmeDP(String s){
+        int n=s.length();
+        boolean[][] dp=new boolean[n][n];
+
+        for(int i=0;i<n;i++){
+            dp[i][i]=true;
+        }
+
+        for(int i=1;i<n;i++){
+            if(s.charAt(i-1)==s.charAt(i)){
+                dp[i-1][i]=true;
+            }
+        }
+
+        for(int i=2;i<=n;i++)
+        {
+            for(int j=0;j<n;j++){
+
+                int k=j+i-1;
+
+                if(k<n && j+1<n && k-1>=0 && dp[j+1][k-1] && s.charAt(j)==s.charAt(k)){
+                    dp[j][k]=true;
+                }
+
+            }
+            
+        }
+
+        return  dp;
+
+    }
+
+}

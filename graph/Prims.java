@@ -55,3 +55,65 @@ class Solution {
          return cost;  
     }
 }
+
+
+
+import java.util.*;
+
+public class Solution {
+    public static ArrayList<ArrayList<Integer>> calculatePrimsMST(int n, int m, ArrayList<ArrayList<Integer>> g) {
+        List<List<int[]>> adjList = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            adjList.add(new ArrayList<>());
+        }
+
+        for (ArrayList<Integer> edge : g) {
+            int n1 = edge.get(0) - 1;
+            int n2 = edge.get(1) - 1;
+            int wt = edge.get(2);
+            adjList.get(n1).add(new int[] { n2, wt });
+            adjList.get(n2).add(new int[] { n1, wt });
+        }
+
+        PriorityQueue<int[]> pq = new PriorityQueue<>((e1, e2) -> e1[2] - e2[2]);
+
+        boolean[] visited = new boolean[n];
+
+        pq.add(new int[] { 0, 0, 0 });
+
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
+        //Time: ElogE
+        while (!pq.isEmpty()) {
+            int[] edge = pq.poll();
+            int src = edge[0];
+            int dest = edge[1];
+            int weight = edge[2];
+
+            if (visited[dest]) {
+                continue;
+            }
+
+            visited[dest] = true;
+
+            if (src != dest) {
+                ArrayList<Integer> list = new ArrayList<>();
+                list.add(src + 1);
+                list.add(dest + 1);
+                list.add(weight);
+                result.add(list);
+            }
+
+            for (int[] nei : adjList.get(dest)) {
+                int nextDest = nei[0];
+                int nextWeight = nei[1];
+                if (!visited[nextDest]) {
+                    pq.add(new int[] { dest, nextDest, nextWeight });
+                }
+            }
+        }
+
+        return result;
+    }
+}

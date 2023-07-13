@@ -156,7 +156,7 @@ class Solution {
  * 
  * This is the most optimized approach to find solution
  * 
- * BFS to prepare level map i.e at ehich level each word exists while level traversal
+ * BFS to prepare level map i.e at which level each word exists while level traversal
  * DFS to backtrack from the end, level by level to reach start word and saving the sequence
  * 
  */

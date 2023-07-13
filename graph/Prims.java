@@ -80,6 +80,7 @@ public class Solution {
 
         boolean[] visited = new boolean[n];
 
+        //src, dest, weight
         pq.add(new int[] { 0, 0, 0 });
 
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();

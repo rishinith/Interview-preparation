@@ -48,6 +48,7 @@ class Solution {
             int city = current[0];
             int curCost = current[1];
             
+            //this is not required
             if(curCost > minCost[city]) 
                 continue;
             

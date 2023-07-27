@@ -82,7 +82,7 @@ class Solution {
 
 
         //no lie in range of arr[high]---arr[low]  now
-        
+        //ans= arr[high] + (more element)= arr[high]+ (k- missing elements upto high)=arr[high]+ (k- (arr[high]-(high+1)))= k + high +1
         return high+1+k;
     }
 

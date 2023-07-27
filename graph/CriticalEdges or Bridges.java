@@ -82,3 +82,73 @@ Map<Integer,List<Integer>> getGraph(int n, List<List<Integer>> connections){
 
         return adjMap;
 }
+
+
+
+//Articulation Point
+/**
+ * Given an undirected connected graph with V vertices and adjacency list adj. You are required to find all the vertices removing which (and edges through it) 
+ * disconnects the graph into 2 or more components.
+Note: Indexing is zero-based i.e nodes numbering from (0 to V-1). There might be loops present in the graph.
+ */
+
+class Solution
+{
+    public ArrayList<Integer> articulationPoints(int V,ArrayList<ArrayList<Integer>> adj)
+    {
+        
+        //using set to store the result because answers can repeat themselves
+        Set<Integer> result=new TreeSet<>();
+        int[] arrival=new int[V];
+        Arrays.fill(arrival, -1);
+        
+        for(int i=0;i<V;i++){
+            dfs(i, adj, -1, result, arrival, 0);
+        }
+       
+        if(result.size()==0){
+            result.add(-1);
+        }
+        return new ArrayList<>(result);
+    }
+    
+    void dfs(int v, ArrayList<ArrayList<Integer>> adj, int parent, Set<Integer> result, int[] arrival, int currentTime){
+        if(arrival[v]!=-1){
+            return;
+        }
+
+        arrival[v]=currentTime;
+        
+        
+        int minArrivalTime=currentTime;
+        
+        int child=0;
+        for(int nei:adj.get(v)){
+            
+            if(parent==nei){
+                continue;
+            }
+            if(arrival[nei]!=-1){
+                minArrivalTime=Math.min(minArrivalTime, arrival[nei]);
+            }
+            else{
+                dfs(nei, adj, v, result, arrival, currentTime+1);
+                minArrivalTime=Math.min(minArrivalTime, arrival[nei]);
+
+                //This differs from above finding the bridges implementation here we are using >=, also avoiding starting node here with parent!=-1
+                if(arrival[nei]>=arrival[v] && parent!=-1){
+                    result.add(v);
+                }
+                child++;
+            }
+        }
+        
+        arrival[v]=minArrivalTime;
+        
+        //special handling for starting nodes
+        if(parent==-1 && child>1){
+            result.add(v);
+        }
+        
+    }
+}

@@ -72,7 +72,8 @@ class Solution {
       long duration=0;
 
       for(int time:batteries){
-          duration+=Math.min(time, runningTime);
+        //if time>runningTime, and we are checking for runningTime only so it can be used only for runningTime
+        duration+=Math.min(time, runningTime);
       }
 
         return duration>=runningTime*n;

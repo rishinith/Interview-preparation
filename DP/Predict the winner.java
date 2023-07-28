@@ -61,3 +61,36 @@ class Solution {
         return maxDiff(nums, 0, n - 1, n) >= 0;
     }
 }
+
+
+//2nd way
+class Solution {
+    public boolean PredictTheWinner(int[] nums) {
+
+        int totalScore=Arrays.stream(nums).sum();
+        int player1MaxScore=player1MaxSCore(nums, 0, nums.length-1, 0, new Integer[nums.length][nums.length][2]);
+        int player2MaxScore=totalScore-player1MaxScore;
+        return player1MaxScore>=player2MaxScore;
+        
+    }
+
+
+
+    int player1MaxSCore(int[] nums, int left, int right, int  chance, Integer[][][] dp){
+        if(left>right){
+            return 0;
+        }
+
+        if(dp[left][right][chance]!=null){
+            return dp[left][right][chance];
+        }
+        if(chance==0){
+            return dp[left][right][chance]= 
+            Math.max(nums[left]+player1MaxSCore(nums, left+1, right, 1, dp), nums[right]+player1MaxSCore(nums, left, right-1, 1, dp));
+        }
+        else{
+            return dp[left][right][chance]=
+            Math.min(player1MaxSCore(nums, left+1, right, 0, dp), player1MaxSCore(nums, left, right-1, 0, dp));
+        }
+    }
+}

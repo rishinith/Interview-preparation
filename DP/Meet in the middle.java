@@ -15,7 +15,7 @@ Note that a subsequence of an array is an array formed by removing some elements
  * Simple brute force approach will be to generate all subsequence sum i.e 2^N but it will be time exceed because N can be 40.
  * So Idea is to divide array in two part and genrate subsets sum array in isolated fashion and that will take 2^N/2 time and space
  * 
- * No sort one array or use Treeset to get the required sum between two arrays
+ * Now sort one array or use Treeset to get the required sum between two arrays
  * 
  * T: (2^N/2)log(2^N/2);
  * 
